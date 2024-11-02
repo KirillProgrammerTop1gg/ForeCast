@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/forecast/static/css/main.2e1405d5.css",
+    "main.js": "/forecast/static/js/main.35af9b31.js",
+    "index.html": "/forecast/index.html",
+    "main.2e1405d5.css.map": "/forecast/static/css/main.2e1405d5.css.map",
+    "main.35af9b31.js.map": "/forecast/static/js/main.35af9b31.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2e1405d5.css",
+    "static/js/main.35af9b31.js"
+  ]
+}
