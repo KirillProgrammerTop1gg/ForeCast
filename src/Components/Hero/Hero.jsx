@@ -170,7 +170,7 @@ const SearchBut = styled.button`
     }
 `;
 
-export default () => {
+export default ({ changeSearch, searchWeather }) => {
     const getDay = (day) => {
         const suffixes = ["th", "st", "nd", "rd"];
         const v = day % 100;
@@ -189,8 +189,8 @@ export default () => {
                 </Date>
             </TextContainer>
             <SearchContainer>
-                <Search placeholder="Search location..." />
-                <SearchBut>
+                <Search placeholder="Search location..." onChange={(e) => changeSearch(e.target.value)} />
+                <SearchBut onClick={searchWeather}>
                     <img src={searchImg} alt="searchImg"/>
                 </SearchBut>
             </SearchContainer>
