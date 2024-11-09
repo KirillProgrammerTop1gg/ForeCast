@@ -8,7 +8,7 @@ export default () => {
     const getWeather = async () => {
         const coords = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${search}&appid=f7919ad1bd5a16f5892c093a142fa2ac`).then(res => res.json());
         console.log(coords);
-        const weather = await fetch(`https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=${coords[0].lat}&lon=${coords[0].lon}&appid=f7919ad1bd5a16f5892c093a142fa2ac`).then(res => res.json());
+        const weather = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${coords[0].lat}&lon=${coords[0].lon}&appid=f7919ad1bd5a16f5892c093a142fa2ac`).then(res => res.json());
         console.log(weather);
     }
     return <>
