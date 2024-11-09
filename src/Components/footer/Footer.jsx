@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import logo from '../../img/logo 2.png'
-import inst from '../../img/inst.png'
-import fasebook from '../../img/fasebook.png'
-import watsap from '../../img/whattapp.png'
+import logo from '../../imgs/logo 2.png'
+import inst from '../../imgs/inst.png'
+import fasebook from '../../imgs/fasebook.png'
+import watsap from '../../imgs/whattapp.png'
 const GlawBox = styled.div`
 	display: flex;
 	padding: 40px 0px 69px 150px;
