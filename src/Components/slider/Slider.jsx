@@ -9,6 +9,15 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import { EffectCoverflow } from 'swiper/modules'
 const ImgSlode = styled.img``
+const GlawBoxSlider = styled.div`
+padding-left:150px;
+padding-right:249px;
+@media (max-width: 1200px){
+	display:none;
+    }
+
+`
+
 const Slidertitle = styled.h3`
 color: #000;
 font-family: "Montserrat";
@@ -38,7 +47,7 @@ const Sliderr = () => {
 	}, [])
 	// getPhoto()
 	return (
-		<>
+		<GlawBoxSlider>
 <Slidertitle>Beautiful nature</Slidertitle>
 
 			<Swiper
@@ -80,7 +89,7 @@ const Sliderr = () => {
 					return console.log(data)
 				})}
 			</Swiper>
-		</>
+		</GlawBoxSlider>
 	)
 }
 
