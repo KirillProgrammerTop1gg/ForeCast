@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Hero from "../Hero/Hero";
 import WheatherCard from "../WeatherCard/WeatherCard";
+import MoreInfo from "../MoreInfo/MoreInfo";
 import { useState } from "react";
 
 export default () => {
@@ -14,5 +15,7 @@ export default () => {
     return <>
         <Hero changeSearch={(text) => setSearch(text)} searchWeather={getWeather}/>
         <WheatherCard />
+        <br></br><br></br><br></br><br></br>
+        <MoreInfo />
     </>
 }

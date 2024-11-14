@@ -12,12 +12,12 @@ const Card = styled.li`
     font-family: Montserrat;
     color: #000;
     font-weight: 500;
-    @media (max-width: 1200px){
+    @media (max-width: 1199px){
         width: 262px;
         padding: 12px 17px 17px 16px;
         height: 352px;
     }
-    @media (max-width: 768px){
+    @media (max-width: 767px){
         width: 293px;
         height: 392px;   
         padding: 15px 15px 20px;
@@ -26,10 +26,10 @@ const Card = styled.li`
         padding: 0 10px;
         display: flex;
         justify-content: space-between;
-        @media (max-width: 1200px){
+        @media (max-width: 1199px){
             padding: 0 8px;
         }
-        @media (max-width: 768px){
+        @media (max-width: 767px){
             padding: 0;   
         }
     }
@@ -38,11 +38,11 @@ const Card = styled.li`
         display: flex;
         justify-content: space-between;
         padding: 0 12px;
-        @media (max-width: 1200px){
+        @media (max-width: 1199px){
             padding: 0 10px;
             margin-top: 8px;
         }
-        @media (max-width: 768px){
+        @media (max-width: 767px){
             padding: 0 26px 0 27px;
             margin-top: 11px;
         }
@@ -51,11 +51,11 @@ const Card = styled.li`
         display: flex;
         gap: 16px;
         margin-top: 38px;
-        @media (max-width: 1200px){
+        @media (max-width: 1199px){
             gap: 14px;
             margin-top: 34px;
         }
-        @media (max-width: 768px){
+        @media (max-width: 767px){
             margin-top: 44px;
             padding: 0 17px;
         }
@@ -63,7 +63,7 @@ const Card = styled.li`
 `;
 const Place = styled.p`
     font-size: 14px;
-    @media (max-width: 1200px){
+    @media (max-width: 1199px){
         font-size: 12px;
     }
 `;
@@ -73,11 +73,11 @@ const UpdateTime = styled.h3`
     width: max-content;
     text-align: center;
     font-weight: 500;
-    @media (max-width: 1200px){
+    @media (max-width: 1199px){
         margin: 11px auto 0;
         font-size: 20px;
     }
-    @media (max-width: 768px){
+    @media (max-width: 767px){
         margin: 25px auto 0;
     }
 `;
@@ -88,7 +88,7 @@ const AdditionalBut = styled.button`
     font-size: 10px;
     border: 0;
     cursor: pointer;
-    @media (max-width: 1200px){
+    @media (max-width: 1199px){
         font-size: 9px;
         padding: 6px 16px;
         border-radius: 5px;
@@ -102,7 +102,7 @@ const Date = styled.ul`
     justify-content: center;
     align-items: center;
     height: 17px;
-    @media (max-width: 1200px){
+    @media (max-width: 1199px){
         height: 15px;
         font-size: 12px;
         margin-top: 12px;
@@ -111,7 +111,7 @@ const Date = styled.ul`
         width: 1px;
         height: 17px;
         background: #000;
-        @media (max-width: 1200px){
+        @media (max-width: 1199px){
             height: 15px;
         }
     }
@@ -134,12 +134,12 @@ const WeatherIcon = styled.img`
     width: 120px;
     display: block;
     height: 120px;
-    @media (max-width: 1200px){
+    @media (max-width: 1199px){
         margin: 27px auto 0;
         width: 76px;
         height: 76px;
     }
-    @media (max-width: 768px){
+    @media (max-width: 767px){
         width: 83px;
         height: 83px;
         margin: 24px auto 0;
@@ -150,7 +150,7 @@ const Temp = styled.h2`
     margin-top: 15px;
     text-align: center;
     font-weight: 500;
-    @media (max-width: 1200px){
+    @media (max-width: 1199px){
         margin-top: 25px;
         font-size: 24px;
     }
@@ -166,7 +166,7 @@ const ActionBut = styled.button`
     border: 0;
     background-color: transparent;
     cursor: pointer;
-    @media (max-width: 1200px){
+    @media (max-width: 1199px){
         width: 24px;
         height: 24px;
     }
@@ -179,14 +179,14 @@ const Morebut = styled.button`
     margin: 0 21px 0 22px;
     border: 0;
     cursor: pointer;
-    @media (max-width: 1200px){
+    @media (max-width: 1199px){
         font-size: 9px;
         width: 81px;
         padding: 6px 19px;
         margin: 0 16px 0 18px;
         border-radius: 5px;
     }
-    @media (max-width: 768px){
+    @media (max-width: 767px){
         padding: 8px 20px;
         width: 84px;
     }
