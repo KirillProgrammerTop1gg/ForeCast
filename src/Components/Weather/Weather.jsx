@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Hero from "../Hero/Hero";
 import WheatherCard from "../WeatherCard/WeatherCard";
 import MoreInfo from "../MoreInfo/MoreInfo";
+import HourlyGraph from "../HourlyGraph/HourlyGraph";
+import ForeCast from "../ForeCast/ForeCast";
 import { useState } from "react";
 
 export default () => {
@@ -17,5 +19,9 @@ export default () => {
         <WheatherCard />
         <br></br><br></br><br></br><br></br>
         <MoreInfo />
+        <br></br><br></br><br></br><br></br>
+        <HourlyGraph />
+        <br></br><br></br><br></br><br></br>
+        <ForeCast />
     </>
 }
