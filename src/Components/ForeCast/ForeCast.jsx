@@ -9,7 +9,7 @@ const Forecast = styled.section`
     font-family: Montserrat;
     font-weight: 500;
     font-size: 16px;
-    margin: 0 auto;
+    margin: 80px auto 0;
     color: #000;
     @media (max-width: 1199px){
         width: 634px;
@@ -57,6 +57,7 @@ const ForecastList = styled.ul`
         border-radius: 10px;
         background: #D9D9D9;
         height: 47px;
+        position: relative;
         display: flex;
         align-items: center;
         padding: 0 50px;
@@ -74,7 +75,7 @@ const ForecastList = styled.ul`
         }
     }
 `;
-const Date = styled.p``;
+const DateText = styled.p``;
 const WeatherIcon = styled.img`
     width: 45px;
     height: 45px;
@@ -111,57 +112,15 @@ const Weather = styled.p`
     }
 `;
 
-export default ({}) =>
+export default ({ data }) =>
 <Forecast>
     <Title>8-day forecast</Title>
     <ForecastList>
-        <li>
-            <Date>Fri, Oct 13</Date>
-            <WeatherIcon src="./" alt="." />
-            <Temps>23/14℃</Temps>
-            <Weather>light rain</Weather>
-        </li>
-        <li>
-            <Date>Sat, Oct 14</Date>
-            <WeatherIcon src="./" alt="." />
-            <Temps>22/10℃</Temps>
-            <Weather>light rain</Weather>
-        </li>
-        <li>
-            <Date>Sun, Oct 15</Date>
-            <WeatherIcon src="./" alt="." />
-            <Temps>13/6℃</Temps>
-            <Weather>light rain</Weather>
-        </li>
-        <li>
-            <Date>Mon, Oct 16</Date>
-            <WeatherIcon src="./" alt="." />
-            <Temps>12/4℃</Temps>
-            <Weather>few clouds</Weather>
-        </li>
-        <li>
-            <Date>Tue, Oct 17</Date>
-            <WeatherIcon src="./" alt="." />
-            <Temps>12/4℃</Temps>
-            <Weather>overcast clouds</Weather>
-        </li>
-        <li>
-            <Date>Wed, Oct 18</Date>
-            <WeatherIcon src="./" alt="." />
-            <Temps>13/3℃</Temps>
-            <Weather>clear sky</Weather>
-        </li>
-        <li>
-            <Date>Thu, Oct 19</Date>
-            <WeatherIcon src="./" alt="." />
-            <Temps>12/5℃</Temps>
-            <Weather>overcast clouds</Weather>
-        </li>
-        <li>
-            <Date>Fri, Oct 20</Date>
-            <WeatherIcon src="./" alt="." />
-            <Temps>9/3℃</Temps>
-            <Weather>scattered clouds</Weather>
-        </li>
+        {data.forecast.forecastday.map(forecastDay => <li key={Math.floor(10000000 + Math.random() * 90000000)}>
+            <DateText>{new Date(forecastDay.date_epoch*1000).toLocaleString('en', {weekday: 'long'}).slice(0,3)}, {new Date(forecastDay.date_epoch*1000).toLocaleString('en', {month: 'long'}).slice(0,3)} {forecastDay.date.slice(-2)}</DateText>
+            <WeatherIcon src={forecastDay.day.condition.icon.replace('64x64', '128x128')} alt={forecastDay.day.condition.text} />
+            <Temps>{forecastDay.day.maxtemp_c}/{forecastDay.day.mintemp_c}℃</Temps>
+            <Weather>{forecastDay.day.condition.text}</Weather>
+        </li>)}
     </ForecastList>
 </Forecast>

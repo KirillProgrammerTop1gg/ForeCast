@@ -11,7 +11,7 @@ const MoreInfo = styled.ul`
     height: 554px;
     flex-wrap: wrap;
     gap: 58px 40px;
-    margin: 0 auto;
+    margin: 80px auto 0;
     border-radius: 20px;
     background: #E8E8E8;
     padding: 40px 77px;
@@ -98,38 +98,38 @@ const Ico = styled.img`
     }
 `;
 
-export default ({}) =>
+export default ({ data }) =>
 <MoreInfo>
     <InfoCard>
         <Title>Feels like</Title>
-        <Val>29.2℃</Val>
+        <Val>{data.current.feelslike_c}℃</Val>
         <Ico src={temp} alt="temp"/>
     </InfoCard>
     <InfoCard>
         <Title>Min ℃</Title>
-        <Val>27.9℃</Val>
+        <Val>{data.forecast.forecastday[0].day.mintemp_c}℃</Val>
         <Empty></Empty>
         <Title>Max ℃</Title>
-        <Val>27.9℃</Val>
+        <Val>{data.forecast.forecastday[0].day.maxtemp_c}℃</Val>
     </InfoCard>
     <InfoCard>
         <Title>Humidity</Title>
-        <Val>59%</Val>
+        <Val>{data.current.humidity}%</Val>
         <Ico src={humidity} alt="humidity"/>
     </InfoCard>
     <InfoCard>
         <Title>Pressure</Title>
-        <Val>1007 Pa</Val>
+        <Val>{data.current.pressure_mb} Pa</Val>
         <Ico src={pressure} alt="pressure"/>
     </InfoCard>
     <InfoCard>
         <Title>Wind speed</Title>
-        <Val>3.17 m/s</Val>
+        <Val>{(data.current.wind_kph/3.6).toFixed(2)} m/s</Val>
         <Ico src={windSpeed} alt="wind speed"/>
     </InfoCard>
     <InfoCard>
         <Title>Visibility</Title>
-        <Val>Unlimited</Val>
+        <Val>{data.current.vis_km}km</Val>
         <Ico src={visiblity} alt="visiblity"/>
     </InfoCard>
 </MoreInfo>

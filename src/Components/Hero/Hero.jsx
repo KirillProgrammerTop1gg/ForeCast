@@ -189,8 +189,8 @@ export default ({ changeSearch, searchWeather }) => {
                 </Date>
             </TextContainer>
             <SearchContainer>
-                <Search placeholder="Search location..." onChange={(e) => changeSearch(e.target.value)} />
-                <SearchBut onClick={searchWeather}>
+                <Search placeholder="Search location..." onChange={(e) => changeSearch(e.target.value)} onKeyDown={(e) => e.key === 'Enter' ? (e.target.value = '', searchWeather()) : null} />
+                <SearchBut onClick={(e) => (document.querySelector('input[placeholder="Search location..."]').value = '', searchWeather())}>
                     <img src={searchImg} alt="searchImg"/>
                 </SearchBut>
             </SearchContainer>

@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import del from "../../imgs/del.png";
 import fav from "../../imgs/fav.png";
+import favUsed from "../../imgs/favUsed.png";
 import update from "../../imgs/update.png";
+import React, {useState, useEffect} from "react";
 
 const Card = styled.li`
     width: 320px;
@@ -94,7 +96,7 @@ const AdditionalBut = styled.button`
         border-radius: 5px;
     }
 `;
-const Date = styled.ul`
+const DateWeatherUpdate = styled.ul`
     margin-top: 15px;
     font-size: 14px;
     position: relative;
@@ -192,28 +194,30 @@ const Morebut = styled.button`
     }
 `;
 
-export default ({ data }) => 
-<Card>
-    <ul>
-        <li><Place>Prague</Place></li>
-        <li><Place>Czech Republic</Place></li>
-    </ul>
-    <UpdateTime>14:00</UpdateTime>
-    <ul>
-        <li><AdditionalBut>Hourly forecast</AdditionalBut></li>
-        <li><AdditionalBut>Weekly forecast</AdditionalBut></li>
-    </ul>
-    <Date>
-        <li><p>13.10.2023</p></li>
-        <li><div></div></li>
-        <li><p>Friday</p></li>
-    </Date>
-    <WeatherIcon />
-    <Temp>22℃</Temp>
-    <ul>
-        <li><ActionBut><img src={update} /></ActionBut></li>
-        <li><ActionBut><img src={fav} /></ActionBut></li>
-        <li><Morebut>See more</Morebut></li>
-        <li><ActionBut><img src={del} /></ActionBut></li>
-    </ul>
-</Card>
+export default ({ data, updateFunc, delFunc, moreFunc, favFunc, isFav }) => {
+    const WeatherDate = new Date(data.current.last_updated_epoch*1000);
+    return (<Card>
+        <ul>
+            <li><Place>{data.location.name}</Place></li>
+            <li><Place>{data.location.country}</Place></li>
+        </ul>
+        <UpdateTime>{WeatherDate.toLocaleTimeString('ru-RU', {hour: '2-digit', minute: '2-digit'})}</UpdateTime>
+        <ul>
+            <li><AdditionalBut onClick={() => moreFunc(data.location.name, 2, isFav)}>Hourly forecast</AdditionalBut></li>
+            <li><AdditionalBut onClick={() => moreFunc(data.location.name, 3, isFav)}>Weekly forecast</AdditionalBut></li>
+        </ul>
+        <DateWeatherUpdate>
+            <li><p>{WeatherDate.toLocaleDateString('ru-RU')}</p></li>
+            <li><div></div></li>
+            <li><p>{WeatherDate.toLocaleString('en', {weekday: 'long'})}</p></li>
+        </DateWeatherUpdate>
+        <WeatherIcon src={data.current.condition.icon.replace('64x64', '128x128')} alt={data.current.condition.text}/>
+        <Temp>{data.current.temp_c}℃</Temp>
+        <ul>
+            <li><ActionBut onClick={() => updateFunc(data.location.name)}><img src={update} /></ActionBut></li>
+            <li><ActionBut onClick={() => favFunc(data)}><img src={isFav ? favUsed : fav} /></ActionBut></li>
+            <li><Morebut onClick={() => moreFunc(data.location.name, 1, isFav)}>See more</Morebut></li>
+            <li><ActionBut onClick={() => delFunc(data.location.name)}><img src={del} /></ActionBut></li>
+        </ul>
+    </Card>)
+}
