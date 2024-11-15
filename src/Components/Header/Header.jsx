@@ -1,7 +1,7 @@
 import React from 'react';
 import { HeaderContainer, NavLinks, NavLink, SignUpButton, } from './Header.styled';
-import header1 from "../image/header1.png"
-import header2 from "../image/header2.png"
+import header1 from "../../imgs/header1.png"
+import header2 from "../../imgs/header2.png"
 
 const Header = () => {
     return (

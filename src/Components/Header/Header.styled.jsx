@@ -8,6 +8,7 @@ export const HeaderContainer = styled.header`
   height: 80px;
   background-color: #fff;
   border-bottom: 1px solid #ddd;
+  font-family: "Montserrat Alternates";
 `;
 
 export const Logo = styled.div`
@@ -32,7 +33,7 @@ export const NavLink = styled.a`
 
 export const SignUpButton = styled.button`
   background-color: #ffa500;
-  color: #fff;
+  color: #000;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;

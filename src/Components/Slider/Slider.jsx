@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Component, useMemo, useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -10,8 +10,8 @@ import 'swiper/css/navigation'
 import { EffectCoverflow } from 'swiper/modules'
 const ImgSlode = styled.img``
 const GlawBoxSlider = styled.div`
-padding-left:150px;
-padding-right:249px;
+margin: 80px auto 0;
+width: 1140px;
 @media (max-width: 1200px){
 	display:none;
     }
