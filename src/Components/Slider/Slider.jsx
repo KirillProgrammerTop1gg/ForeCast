@@ -65,7 +65,6 @@ const Sliderr = () => {
 				modules={[EffectCoverflow]}
 				style={{
                     marginTop: '40px',
-                    marginBottom: '48px',
 					width: '900px',
 					position: 'relative',
 				}}

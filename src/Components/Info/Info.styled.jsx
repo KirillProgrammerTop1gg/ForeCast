@@ -5,6 +5,9 @@ export const Container = styled.div`
   flex-direction: column;
   max-width: 1140px;
   margin: 80px auto 0;
+  @media (max-width: 1199px){
+	  display:none;
+  }
 `;
 
 export const Title = styled.h2`

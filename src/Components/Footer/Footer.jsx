@@ -6,6 +6,7 @@ import watsap from '../../imgs/whattapp.png'
 const GlawBox = styled.div`
 	display: flex;
 	padding: 40px 0px 69px 150px;
+	margin-top: 48px;
 	gap: 103px;
 	/* width: 1440px; */
 	/* height: 179px; */
