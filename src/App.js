@@ -1,4 +1,4 @@
-import Header from "./Components/Header/Header";
+import Header from "./Components/header/Header";
 import Weather from "./Components/Weather/Weather";
 import Info from "./Components/Info/Info";
 import Slider from "./Components/Slider/Slider";
