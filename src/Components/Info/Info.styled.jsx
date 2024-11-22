@@ -27,6 +27,7 @@ export const CardContainer = styled.div`
 `;
 
 export const Card = styled.div`
+  width: 270px;
   display: flex;
   flex-direction: column;
   align-items: center;

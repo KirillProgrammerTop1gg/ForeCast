@@ -1,8 +1,4 @@
-import React from 'react';
-import img1 from "../../imgs/info1.png";
-import img2 from "../../imgs/info2.png";
-import img3 from "../../imgs/info3.png";
-import img4 from "../../imgs/info4.png";
+import React, { useEffect, useState } from 'react';
 import {
     Container,
     Title,
@@ -13,38 +9,44 @@ import {
     Button
 } from './Info.styled';
 
-const cardsData = [
-    {
-        image: img1,
-        description: 'Rescue pups pose as ghosts in festive photo shoot',
-    },
-    {
-        image: img2,
-        description: 'Cat interrupts morning coffee on sunny Washington morning',
-    },
-    {
-        image: img3,
-        description: 'New study finds dogs pay more attention to women',
-    },
-    {
-        image: img4,
-        description: 'Petting dogs gives health benefit, even if they are not yours',
-    },
-];
+const Info = () => {
+    const [cardsData, setCardsData] = useState([]);
+    const [pageTitle, setPageTitle] = useState('Interacting with our pets');
 
-const Info = () => (
-    <Container>
-        <Title>Interacting with our pets</Title>
-        <CardContainer>
-            {cardsData.map((card, index) => (
-                <Card key={index}>
-                    <Image src={card.image} alt="pet image" />
-                    <Description>{card.description}</Description>
-                </Card>
-            ))}
-        </CardContainer>
-        <Button>See more</Button>
-    </Container>
-);
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(
+                'https://newsapi.org/v2/everything?q=tesla&from=2024-10-22&sortBy=publishedAt&apiKey=dfc315e5dc1a415a9f904b06a1999ba3'
+            );
+            const data = await response.json();
+            const articles = data.articles.slice(0, 4).map((article) => ({
+                image: article.urlToImage,
+                description: article.title,
+                title: article.title,
+            }));
+            setCardsData(articles);
+            if (articles.length > 0) {
+                setPageTitle(articles[0].title);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    return (
+        <Container>
+            <Title>{pageTitle}</Title>
+            <CardContainer>
+                {cardsData.map((card, index) => (
+                    <Card key={index}>
+                        <Image src={card.image} alt="news image" />
+                        <Description>{card.description}</Description>
+                    </Card>
+                ))}
+            </CardContainer>
+            <Button>See more</Button>
+        </Container>
+    );
+};
 
 export default Info;
