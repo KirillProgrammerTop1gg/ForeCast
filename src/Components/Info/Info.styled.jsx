@@ -3,11 +3,11 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px;
   max-width: 1140px;
-  margin: 0 auto;
+  margin: 80px auto 0;
+  @media (max-width: 1199px){
+	  display:none;
+  }
 `;
 
 export const Title = styled.h2`
@@ -54,7 +54,7 @@ text-decoration-skip-ink: none;
 `;
 
 export const Button = styled.button`
-  margin-top: 20px;
+  margin-top: 40px;
   color: #000000;
   background-color: #ff9f43;
   border: none;

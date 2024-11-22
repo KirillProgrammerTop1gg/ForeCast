@@ -1,8 +1,8 @@
 import React from 'react';
-import img1 from "../image/info1.png";
-import img2 from "../image/info2.png";
-import img3 from "../image/info3.png";
-import img4 from "../image/info4.png";
+import img1 from "../../imgs/info1.png";
+import img2 from "../../imgs/info2.png";
+import img3 from "../../imgs/info3.png";
+import img4 from "../../imgs/info4.png";
 import {
     Container,
     Title,
