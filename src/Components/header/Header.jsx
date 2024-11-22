@@ -1,66 +1,78 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
     HeaderContainer,
+    Logo,
     NavLinks,
     NavLink,
-    SignUpButton
+    SignUpButton,
+    HamburgerMenu,
+    MobileNavActive,
+    UserAvatar,
+    ModalOverlay,
+    ModalContent,
+    CloseButton,
+    ModalTitle,
+    Form,
+    Input,
+    SignUpModalButton,
+    SignInText,
 } from './Header.styled';
-import LoginModal from './LoginModal';
-import header1 from "../image/header1.png";
-import header2 from "../image/header2.png";
+import header1 from "../../imgs/header1.png"
+import header2 from "../../imgs/header2.png"
 
 const Header = () => {
-    const [user, setUser] = useState(null);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [user, setUser] = useState(localStorage.getItem('user') || '');
 
-    useEffect(() => {
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
-        }
-    }, []);
-
-    const handleLogout = () => {
-        localStorage.removeItem('user');
-        setUser(null);
-    };
-
-    const handleLogin = (userData) => {
-        localStorage.setItem('user', JSON.stringify(userData));
-        setUser(userData);
+    const handleSignUp = (e) => {
+        e.preventDefault();
+        const username = e.target.username.value;
+        localStorage.setItem('user', username);
+        setUser(username);
         setIsModalOpen(false);
     };
 
     return (
-        <>
-            <HeaderContainer>
-                <img src={header1} alt="Logo" />
+        <HeaderContainer>
+            <Logo src={header1} alt="24/7 Forecast Logo" />
+            <HamburgerMenu onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                <span></span>
+                <span></span>
+                <span></span>
+            </HamburgerMenu>
 
-                <NavLinks>
-                    <NavLink href="#">Who we are</NavLink>
-                    <NavLink href="#">Contacts</NavLink>
-                    <NavLink href="#">Menu</NavLink>
-                </NavLinks>
-
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    {user ? (
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <span style={{ marginRight: '15px' }}>{user.name}</span>
-                            <SignUpButton onClick={handleLogout}>
-                                Log Out
-                            </SignUpButton>
-                        </div>
-                    ) : (
-                        <SignUpButton onClick={() => setIsModalOpen(true)}>
-                            Sign Up
-                        </SignUpButton>
-                    )}
-                    <img src={header2} alt="User Icon" />
-                </div>
-            </HeaderContainer>
-
-            {isModalOpen && <LoginModal onClose={() => setIsModalOpen(false)} onLogin={handleLogin} />}
-        </>
+            <NavLinks as={isMobileMenuOpen ? MobileNavActive : 'nav'}>
+                <NavLink href="#">Who we are</NavLink>
+                <NavLink href="#">Contacts</NavLink>
+                <NavLink href="#">Menu</NavLink>
+            </NavLinks>
+            <NavLinks>
+                {user ? (
+                    <UserAvatar>{user}</UserAvatar>
+                ) : (
+                    <SignUpButton onClick={() => setIsModalOpen(true)}>Sign Up</SignUpButton>
+                )}
+                <UserAvatar src={header2}></UserAvatar>
+            </NavLinks>
+            {isModalOpen && (
+                <ModalOverlay onClick={() => setIsModalOpen(false)}>
+                    <ModalContent onClick={(e) => e.stopPropagation()}>
+                        <CloseButton onClick={() => setIsModalOpen(false)}>×</CloseButton>
+                        <ModalTitle>Sign Up</ModalTitle>
+                        <Form onSubmit={handleSignUp}>
+                            <Input name="username" placeholder="Username" required />
+                            <Input type="email" name="email" placeholder="E-Mail" required />
+                            <Input type="password" name="password" placeholder="Password" required />
+                            <SignUpModalButton type="submit">Sign Up</SignUpModalButton>
+                        </Form>
+                        <SignInText>
+                            Already have an account? <a href="#login">Log in</a>
+                        </SignInText>
+                    </ModalContent>
+                </ModalOverlay>
+            )}
+        </HeaderContainer>
     );
 };
 
