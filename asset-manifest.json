@@ -1,13 +1,20 @@
 {
   "files": {
-    "main.css": "/forecast/static/css/main.2e1405d5.css",
-    "main.js": "/forecast/static/js/main.35af9b31.js",
+    "main.css": "/forecast/static/css/main.b09a2b40.css",
+    "main.js": "/forecast/static/js/main.4dd5250c.js",
+    "static/media/heroBg.png": "/forecast/static/media/heroBg.e810f2e6f208a4c63f87.png",
+    "static/media/pressure.png": "/forecast/static/media/pressure.5666320c7340a6c594bf.png",
+    "static/media/news.png": "/forecast/static/media/news.0aa68c48968e94ffb235.png",
+    "static/media/visiblity.png": "/forecast/static/media/visiblity.a77eb6e20d06478b8487.png",
+    "static/media/temp.png": "/forecast/static/media/temp.85ca0dad55f28acf8783.png",
+    "static/media/humidity.png": "/forecast/static/media/humidity.b1f56af3903b5df1a7ad.png",
+    "static/media/windSpeed.png": "/forecast/static/media/windSpeed.7566bbd009862f974f40.png",
     "index.html": "/forecast/index.html",
-    "main.2e1405d5.css.map": "/forecast/static/css/main.2e1405d5.css.map",
-    "main.35af9b31.js.map": "/forecast/static/js/main.35af9b31.js.map"
+    "main.b09a2b40.css.map": "/forecast/static/css/main.b09a2b40.css.map",
+    "main.4dd5250c.js.map": "/forecast/static/js/main.4dd5250c.js.map"
   },
   "entrypoints": [
-    "static/css/main.2e1405d5.css",
-    "static/js/main.35af9b31.js"
+    "static/css/main.b09a2b40.css",
+    "static/js/main.4dd5250c.js"
   ]
 }
