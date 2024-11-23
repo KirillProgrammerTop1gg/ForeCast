@@ -82,7 +82,7 @@ export default () => {
         localStorage.setItem('weather', JSON.stringify(weather))
     }, [weather]);
     const getWeather = async () => {
-        const weatherData = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=b3f39c33126447e38f8161756241511&q=${search}&days=8&aqi=no&alerts=no`).then(res => res.json());
+        const weatherData = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=b3f39c33126447e38f8161756241511&q=${search}&days=14&aqi=no&alerts=no`).then(res => res.json());
         if ('error' in weatherData) {
             alert('Invalid place!');
         } else {
@@ -94,7 +94,7 @@ export default () => {
         }
     }
     const updateWeather = async (location) => {
-        const weatherData = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=b3f39c33126447e38f8161756241511&q=${location}&days=8&aqi=no&alerts=no`).then(res => res.json());
+        const weatherData = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=b3f39c33126447e38f8161756241511&q=${location}&days=14&aqi=no&alerts=no`).then(res => res.json());
         setWeather(prevWeather => {
             const updatedWeather = [...prevWeather];
             const index = updatedWeather.findIndex(weatherItem => weatherItem.location.name === location);
