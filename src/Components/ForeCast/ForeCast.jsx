@@ -1,8 +1,8 @@
+import { useState } from "react";
 import styled from "styled-components"
 
 const Forecast = styled.section`
     width: 1140px;
-    height: 554px;
     border-radius: 20px;
     background: #E8E8E8;
     padding: 26px 78px 42px 76px;
@@ -13,21 +13,22 @@ const Forecast = styled.section`
     color: #000;
     @media (max-width: 1199px){
         width: 634px;
-        height: 526px;
         border-radius: 15px;
         padding: 20px 35px 35px;
         font-size: 14px;
     }
     @media (max-width: 767px){
         width: 293px;
-        height: 755px;
         padding: 18px 25px 35px;
         font-size: 10px;
     }
 `;
-const Title = styled.h2`
+const Title = styled.select`
     font-weight: 600;
     font-size: 16px;
+    border: 1px solid #E8E8E8;
+    background: transparent;
+    cursor: pointer;
     @media (max-width: 1199px){
         font-size: 12px;
         padding-left: 10px;
@@ -112,15 +113,33 @@ const Weather = styled.p`
     }
 `;
 
-export default ({ data }) =>
-<Forecast>
-    <Title>8-day forecast</Title>
-    <ForecastList>
-        {data.forecast.forecastday.map(forecastDay => <li key={Math.floor(10000000 + Math.random() * 90000000)}>
-            <DateText>{new Date(forecastDay.date_epoch*1000).toLocaleString('en', {weekday: 'long'}).slice(0,3)}, {new Date(forecastDay.date_epoch*1000).toLocaleString('en', {month: 'long'}).slice(0,3)} {forecastDay.date.slice(-2)}</DateText>
-            <WeatherIcon src={forecastDay.day.condition.icon.replace('64x64', '128x128')} alt={forecastDay.day.condition.text} />
-            <Temps>{forecastDay.day.maxtemp_c}/{forecastDay.day.mintemp_c}℃</Temps>
-            <Weather>{forecastDay.day.condition.text}</Weather>
-        </li>)}
-    </ForecastList>
-</Forecast>
+export default ({ data }) => {
+    const [filter, setFilter] = useState(8);
+    return (<Forecast>
+        <Title onChange={(e) => setFilter(e.target.value)}>
+            <option value={3}>
+                3-day forecast
+            </option>
+            <option value={5}>
+                5-day forecast
+            </option>
+            <option value={7}>
+                Weekly forecast
+            </option>
+            <option selected value={8}>
+                8-day forecast
+            </option>
+            <option value={14}>
+                14-day forecast
+            </option>
+        </Title>
+        <ForecastList>
+            {data.forecast.forecastday.slice(0, filter).map(forecastDay => <li key={Math.floor(10000000 + Math.random() * 90000000)}>
+                <DateText>{new Date(forecastDay.date_epoch*1000).toLocaleString('en', {weekday: 'long'}).slice(0,3)}, {new Date(forecastDay.date_epoch*1000).toLocaleString('en', {month: 'long'}).slice(0,3)} {forecastDay.date.slice(-2)}</DateText>
+                <WeatherIcon src={forecastDay.day.condition.icon.replace('64x64', '128x128')} alt={forecastDay.day.condition.text} />
+                <Temps>{forecastDay.day.maxtemp_c}/{forecastDay.day.mintemp_c}℃</Temps>
+                <Weather>{forecastDay.day.condition.text}</Weather>
+            </li>)}
+        </ForecastList>
+    </Forecast>)
+}
