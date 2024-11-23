@@ -1,8 +1,19 @@
+import Header from "./Components/header/Header";
+import Weather from "./Components/Weather/Weather";
 import Info from "./Components/Info/Info";
+import Slider from "./Components/Slider/Slider";
+import Footer from "./Components/Footer/Footer";
+
 
 const App = () => {
   return (
-    <Info />
+    <>
+      <Header />
+      <Weather />
+      <Info />
+      <Slider />
+      <Footer />
+    </>
   )
 }
 
