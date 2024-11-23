@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
-   display: flex;
+    display: flex;
+    font-family: "Montserrat Alternates";
+    font-weight: 500;
     justify-content: space-between;
     align-items: center;
     padding: 10px 180px;

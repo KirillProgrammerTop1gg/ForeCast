@@ -53,7 +53,7 @@ const Header = () => {
                 ) : (
                     <SignUpButton onClick={() => setIsModalOpen(true)}>Sign Up</SignUpButton>
                 )}
-                <UserAvatar src={header2}></UserAvatar>
+                <UserAvatar><img src={header2} /></UserAvatar>
             </NavLinks>
             {isModalOpen && (
                 <ModalOverlay onClick={() => setIsModalOpen(false)}>
