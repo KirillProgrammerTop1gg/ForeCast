@@ -16,21 +16,58 @@ import {
     Input,
     SignUpModalButton,
     SignInText,
+    UserName
 } from './Header.styled';
-import header1 from "../../imgs/header1.png"
-import header2 from "../../imgs/header2.png"
+import header1 from "../../imgs/header1.png";
+import header2 from "../../imgs/header2.png";
 
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [user, setUser] = useState(localStorage.getItem('user') || '');
+    const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+    const [isLogInModalOpen, setIsLogInModalOpen] = useState(false);
+    const [user, setUser] = useState(localStorage.getItem('currentUser') || '');
+
+    const getUsers = () => JSON.parse(localStorage.getItem('users')) || [];
 
     const handleSignUp = (e) => {
         e.preventDefault();
         const username = e.target.username.value;
-        localStorage.setItem('user', username);
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        const users = getUsers();
+        if (users.some((u) => u.email === email)) {
+            alert('User with this email already exists.');
+            return;
+        }
+
+        const newUser = { username, email, password };
+        localStorage.setItem('users', JSON.stringify([...users, newUser]));
+        localStorage.setItem('currentUser', username);
         setUser(username);
-        setIsModalOpen(false);
+        setIsSignUpModalOpen(false);
+    };
+
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        const users = getUsers();
+        const existingUser = users.find((u) => u.email === email && u.password === password);
+
+        if (existingUser) {
+            localStorage.setItem('currentUser', existingUser.username);
+            setUser(existingUser.username);
+            setIsLogInModalOpen(false);
+        } else {
+            alert('Invalid email or password. Please try again.');
+        }
+    };
+
+    const handleLogOut = () => {
+        localStorage.removeItem('currentUser');
+        setUser('');
     };
 
     return (
@@ -49,16 +86,23 @@ const Header = () => {
             </NavLinks>
             <NavLinks>
                 {user ? (
-                    <UserAvatar>{user}</UserAvatar>
+                    <>
+                        <SignUpButton onClick={handleLogOut}>Log Out</SignUpButton>
+                        <UserName>{user}</UserName>
+                    </>
                 ) : (
-                    <SignUpButton onClick={() => setIsModalOpen(true)}>Sign Up</SignUpButton>
+                    <>
+                        <SignUpButton onClick={() => setIsSignUpModalOpen(true)}>Sign Up</SignUpButton>
+                        <UserAvatar>
+                            <img src={header2} alt="User avatar" />
+                        </UserAvatar>
+                    </>
                 )}
-                <UserAvatar><img src={header2} /></UserAvatar>
             </NavLinks>
-            {isModalOpen && (
-                <ModalOverlay onClick={() => setIsModalOpen(false)}>
+            {isSignUpModalOpen && (
+                <ModalOverlay onClick={() => setIsSignUpModalOpen(false)}>
                     <ModalContent onClick={(e) => e.stopPropagation()}>
-                        <CloseButton onClick={() => setIsModalOpen(false)}>×</CloseButton>
+                        <CloseButton onClick={() => setIsSignUpModalOpen(false)}>×</CloseButton>
                         <ModalTitle>Sign Up</ModalTitle>
                         <Form onSubmit={handleSignUp}>
                             <Input name="username" placeholder="Username" required />
@@ -67,8 +111,28 @@ const Header = () => {
                             <SignUpModalButton type="submit">Sign Up</SignUpModalButton>
                         </Form>
                         <SignInText>
-                            Already have an account? <a href="#login">Log in</a>
+                            Already have an account?{' '}
+                            <a href="#" onClick={(e) => {
+                                e.preventDefault();
+                                setIsSignUpModalOpen(false);
+                                setIsLogInModalOpen(true);
+                            }}>
+                                Log in
+                            </a>
                         </SignInText>
+                    </ModalContent>
+                </ModalOverlay>
+            )}
+            {isLogInModalOpen && (
+                <ModalOverlay onClick={() => setIsLogInModalOpen(false)}>
+                    <ModalContent onClick={(e) => e.stopPropagation()}>
+                        <CloseButton onClick={() => setIsLogInModalOpen(false)}>×</CloseButton>
+                        <ModalTitle>Log In</ModalTitle>
+                        <Form onSubmit={handleSignIn}>
+                            <Input type="email" name="email" placeholder="E-Mail" required />
+                            <Input type="password" name="password" placeholder="Password" required />
+                            <SignUpModalButton type="submit">Log In</SignUpModalButton>
+                        </Form>
                     </ModalContent>
                 </ModalOverlay>
             )}

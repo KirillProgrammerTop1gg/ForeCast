@@ -30,6 +30,25 @@ export const Logo = styled.img`
 export const NavLinks = styled.nav`
     display: flex;
     gap: 40px;
+    align-items: center;
+
+    @media (max-width: 768px) {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: #f6f6f6;
+        padding: 20px 0;
+        z-index: 1000;
+        border-top: 1px solid #ddd;
+    }
+`;
+
+export const UserName = styled.p`
+    display: flex;
+    gap: 40px;
 
     @media (max-width: 768px) {
         display: none;
