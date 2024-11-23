@@ -8,6 +8,7 @@ import {
     Description,
     Button,
 } from './Info.styled';
+import news from "../../imgs/news.png";
 
 const Info = () => {
     const [cardsData, setCardsData] = useState([]);
@@ -49,7 +50,7 @@ const Info = () => {
             <CardContainer>
                 {cardsData.map((card, index) => (
                     <Card key={index}>
-                        <Image src={card.image} alt="news" />
+                        {card.image.startsWith('https://images.') || card.image.startsWith('https://biztoc.') || card.image.startsWith('https://3dnews.') ? <Image src={news} alt="news" /> : <Image src={card.image} alt="news" />}
                         <Description>{card.description}</Description>
                     </Card>
                 ))}
