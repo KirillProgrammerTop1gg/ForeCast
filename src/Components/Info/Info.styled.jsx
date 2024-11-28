@@ -5,8 +5,8 @@ export const Container = styled.div`
   flex-direction: column;
   max-width: 1140px;
   margin: 80px auto 0;
-  @media (max-width: 1199px){
-	  display:none;
+  @media (max-width: 1199px) {
+    display: none;
   }
 `;
 
@@ -20,37 +20,34 @@ export const Title = styled.h2`
 
 export const CardContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
   justify-content: space-between;
   width: 1140px;
-  height: 100%;
 `;
 
 export const Card = styled.div`
+  width: 270px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 12px;
   overflow: hidden;
   background-color: #fff;
-  transition: transform 0.3s ease;
 `;
 
 export const Image = styled.img`
   width: 270px;
   height: 208px;
   object-fit: cover;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  margin-bottom: 20px
+  margin-bottom: 20px;
 `;
 
 export const Description = styled.p`
-font-size: 16px;
-font-weight: 500;
-line-height: 19.5px;
-text-align: left;
-text-decoration-skip-ink: none;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.5px;
+  text-align: left;
 `;
 
 export const Button = styled.button`
@@ -62,9 +59,4 @@ export const Button = styled.button`
   cursor: pointer;
   width: 138px;
   height: 40px;
-  padding: 10px 30px 10px 30px;
-  gap: 10px;
-  border-radius: 10px;
-  opacity: 0px;
-  background: #FFB36C;
 `;

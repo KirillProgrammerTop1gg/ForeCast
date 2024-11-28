@@ -1,8 +1,4 @@
-import React from 'react';
-import img1 from "../../imgs/info1.png";
-import img2 from "../../imgs/info2.png";
-import img3 from "../../imgs/info3.png";
-import img4 from "../../imgs/info4.png";
+import React, { useEffect, useState } from 'react';
 import {
     Container,
     Title,
@@ -10,41 +6,58 @@ import {
     Card,
     Image,
     Description,
-    Button
+    Button,
 } from './Info.styled';
+import news from "../../imgs/news.png";
 
-const cardsData = [
-    {
-        image: img1,
-        description: 'Rescue pups pose as ghosts in festive photo shoot',
-    },
-    {
-        image: img2,
-        description: 'Cat interrupts morning coffee on sunny Washington morning',
-    },
-    {
-        image: img3,
-        description: 'New study finds dogs pay more attention to women',
-    },
-    {
-        image: img4,
-        description: 'Petting dogs gives health benefit, even if they are not yours',
-    },
-];
+const Info = () => {
+    const [cardsData, setCardsData] = useState([]);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
 
-const Info = () => (
-    <Container>
-        <Title>Interacting with our pets</Title>
-        <CardContainer>
-            {cardsData.map((card, index) => (
-                <Card key={index}>
-                    <Image src={card.image} alt="pet image" />
-                    <Description>{card.description}</Description>
-                </Card>
-            ))}
-        </CardContainer>
-        <Button>See more</Button>
-    </Container>
-);
+    const fetchData = async (pageNumber) => {
+        const response = await fetch(
+            `https://newsapi.org/v2/everything?q=tesla&from=2024-10-22&sortBy=publishedAt&page=${pageNumber}&pageSize=4&apiKey=dfc315e5dc1a415a9f904b06a1999ba3`
+        );
+        const data = await response.json();
+        return data.articles.map((article) => ({
+            image: article.urlToImage,
+            description: article.title,
+        }));
+    };
+
+    useEffect(() => {
+        const loadInitialData = async () => {
+            const articles = await fetchData(1);
+            setCardsData(articles);
+            if (articles.length < 4) setHasMore(false);
+        };
+
+        loadInitialData();
+    }, []);
+
+    const loadMore = async () => {
+        const nextPage = page + 1;
+        const articles = await fetchData(nextPage);
+        setCardsData((prev) => [...prev, ...articles]);
+        setPage(nextPage);
+        if (articles.length < 4) setHasMore(false);
+    };
+
+    return (
+        <Container>
+            <Title>Interacting with our pets</Title>
+            <CardContainer>
+                {cardsData.map((card, index) => (
+                    <Card key={index}>
+                        {card.image.startsWith('https://images.') || card.image.startsWith('https://biztoc.') || card.image.startsWith('https://3dnews.') ? <Image src={news} alt="news" /> : <Image src={card.image} alt="news" />}
+                        <Description>{card.description}</Description>
+                    </Card>
+                ))}
+            </CardContainer>
+            {hasMore && <Button onClick={loadMore}>See more</Button>}
+        </Container>
+    );
+};
 
 export default Info;
