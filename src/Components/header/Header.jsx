@@ -18,15 +18,16 @@ import {
     SignInText,
     UserName
 } from './Header.styled';
+// import LoginModal from './LoginModal';
 import header1 from "../../imgs/header1.png";
 import header2 from "../../imgs/header2.png";
 
-const Header = () => {
+const Header = ({ checkLogin }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
     const [isLogInModalOpen, setIsLogInModalOpen] = useState(false);
     const [user, setUser] = useState(localStorage.getItem('currentUser') || '');
-
+    if(user) checkLogin(true);
     const getUsers = () => JSON.parse(localStorage.getItem('users')) || [];
 
     const handleSignUp = (e) => {
@@ -45,6 +46,7 @@ const Header = () => {
         localStorage.setItem('users', JSON.stringify([...users, newUser]));
         localStorage.setItem('currentUser', username);
         setUser(username);
+        checkLogin(true);
         setIsSignUpModalOpen(false);
     };
 
@@ -59,14 +61,17 @@ const Header = () => {
         if (existingUser) {
             localStorage.setItem('currentUser', existingUser.username);
             setUser(existingUser.username);
+            checkLogin(true);
             setIsLogInModalOpen(false);
         } else {
+            checkLogin(false);
             alert('Invalid email or password. Please try again.');
         }
     };
 
     const handleLogOut = () => {
         localStorage.removeItem('currentUser');
+        checkLogin(false);
         setUser('');
     };
 

@@ -38,12 +38,13 @@ const FavCards = styled.ul`
 `;
 const FavTitle = styled.h2`
     color: #000;
+    text-align: center;
     font-family: Montserrat;
     font-size: 20px;
     font-weight: 500;
 `;
 
-export default () => {
+export default ({ isLogin }) => {
     const [firstFav, setFirstFav] = useState(true);
     const [firstWeather, setFirstWeather] = useState(true);
     const [search, setSearch] = useState('');
@@ -127,14 +128,14 @@ export default () => {
     return <>
         <Hero changeSearch={(text) => setSearch(text)} searchWeather={getWeather}/>
         {weather.length > 0 && <Cards>{
-            window.innerWidth < 768 ? weather.slice(0, 1).map(weatherInfo => (<WheatherCard key={weatherInfo.id} favFunc={addToFav} delFunc={delWeather} moreFunc={showMoreInfo} updateFunc={updateWeather} data={weatherInfo} isFav={false}/>))
-            : window.innerWidth < 1200 ? weather.slice(0, 2).map(weatherInfo => (<WheatherCard key={weatherInfo.id} favFunc={addToFav} delFunc={delWeather} moreFunc={showMoreInfo} updateFunc={updateWeather} data={weatherInfo} isFav={false}/>))
-            : weather.map(weatherInfo => (<WheatherCard key={weatherInfo.id} favFunc={addToFav} delFunc={delWeather} moreFunc={showMoreInfo} updateFunc={updateWeather} data={weatherInfo} isFav={false}/>))}
+            window.innerWidth < 768 ? weather.slice(0, 1).map(weatherInfo => (<WheatherCard key={Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000} favFunc={addToFav} delFunc={delWeather} moreFunc={showMoreInfo} updateFunc={updateWeather} data={weatherInfo} isFav={false}/>))
+            : window.innerWidth < 1200 ? weather.slice(0, 2).map(weatherInfo => (<WheatherCard key={Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000} favFunc={addToFav} delFunc={delWeather} moreFunc={showMoreInfo} updateFunc={updateWeather} data={weatherInfo} isFav={false}/>))
+            : weather.map(weatherInfo => (<WheatherCard key={Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000} favFunc={addToFav} delFunc={delWeather} moreFunc={showMoreInfo} updateFunc={updateWeather} data={weatherInfo} isFav={false}/>))}
         </Cards>}
-        {favWeather.length > 0 &&  <FavSection>
+        {favWeather.length > 0 && isLogin &&  <FavSection>
         <FavTitle>Favorites</FavTitle>
         <FavCards>
-            {favWeather.map(weatherInfo => (<WheatherCard key={weatherInfo.id} isFav={true} favFunc={delFav} delFunc={delWeatherFav} moreFunc={showMoreInfo} updateFunc={updateWeatherFav} data={weatherInfo}/>))}
+            {favWeather.map(weatherInfo => (<WheatherCard key={Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000} isFav={true} favFunc={delFav} delFunc={delWeatherFav} moreFunc={showMoreInfo} updateFunc={updateWeatherFav} data={weatherInfo}/>))}
         </FavCards></FavSection>}
         {addInfo.moreInfo ? <MoreInfo data={addInfo.isFav ? favWeather.find(weatherItem => weatherItem.location.name === addInfo.location) : weather.find(weatherItem => weatherItem.location.name === addInfo.location)}/> : null}
         {addInfo.hourlyForecast ? <HourlyGraph data={addInfo.isFav ? favWeather.find(weatherItem => weatherItem.location.name === addInfo.location) : weather.find(weatherItem => weatherItem.location.name === addInfo.location)}/> : null}

@@ -95,6 +95,15 @@ const AdditionalBut = styled.button`
         padding: 6px 16px;
         border-radius: 5px;
     }
+    transition: all .3s;
+    &:hover{
+        transform: scale(1.1);
+        transition: all .2s;
+    }
+    &:active{
+        transform: scale(0.9);
+        transition: all .2s;
+    }
 `;
 const DateWeatherUpdate = styled.ul`
     margin-top: 15px;
@@ -172,6 +181,15 @@ const ActionBut = styled.button`
         width: 24px;
         height: 24px;
     }
+    transition: all .3s;
+    &:hover{
+        transform: scale(1.1);
+        transition: all .2s;
+    }
+    &:active{
+        transform: scale(0.9);
+        transition: all .2s;
+    }
 `;
 const Morebut = styled.button`
     padding: 8px 25px;
@@ -192,32 +210,41 @@ const Morebut = styled.button`
         padding: 8px 20px;
         width: 84px;
     }
+    transition: all .3s;
+    &:hover{
+        transform: scale(1.1);
+        transition: all .2s;
+    }
+    &:active{
+        transform: scale(0.9);
+        transition: all .2s;
+    }
 `;
 
-export default ({ data, updateFunc, delFunc, moreFunc, favFunc, isFav }) => {
+export default ({ id, data, updateFunc, delFunc, moreFunc, favFunc, isFav }) => {
     const WeatherDate = new Date(data.current.last_updated_epoch*1000);
-    return (<Card>
+    return (<Card key={id}>
         <ul>
-            <li><Place>{data.location.name}</Place></li>
-            <li><Place>{data.location.country}</Place></li>
+            <li key={1}><Place>{data.location.name}</Place></li>
+            <li key={2}><Place>{data.location.country}</Place></li>
         </ul>
         <UpdateTime>{WeatherDate.toLocaleTimeString('ru-RU', {hour: '2-digit', minute: '2-digit'})}</UpdateTime>
         <ul>
-            <li><AdditionalBut onClick={() => moreFunc(data.location.name, 2, isFav)}>Hourly forecast</AdditionalBut></li>
-            <li><AdditionalBut onClick={() => moreFunc(data.location.name, 3, isFav)}>Weekly forecast</AdditionalBut></li>
+            <li key={3}><AdditionalBut onClick={() => moreFunc(data.location.name, 2, isFav)}>Hourly forecast</AdditionalBut></li>
+            <li key={4}><AdditionalBut onClick={() => moreFunc(data.location.name, 3, isFav)}>Weekly forecast</AdditionalBut></li>
         </ul>
         <DateWeatherUpdate>
-            <li><p>{WeatherDate.toLocaleDateString('ru-RU')}</p></li>
-            <li><div></div></li>
-            <li><p>{WeatherDate.toLocaleString('en', {weekday: 'long'})}</p></li>
+            <li key={5}><p>{WeatherDate.toLocaleDateString('ru-RU')}</p></li>
+            <li key={6}><div></div></li>
+            <li key={7}><p>{WeatherDate.toLocaleString('en', {weekday: 'long'})}</p></li>
         </DateWeatherUpdate>
         <WeatherIcon src={data.current.condition.icon.replace('64x64', '128x128')} alt={data.current.condition.text}/>
         <Temp>{data.current.temp_c}℃</Temp>
         <ul>
-            <li><ActionBut onClick={() => updateFunc(data.location.name)}><img src={update} /></ActionBut></li>
-            <li><ActionBut onClick={() => favFunc(data)}><img src={isFav ? favUsed : fav} /></ActionBut></li>
-            <li><Morebut onClick={() => moreFunc(data.location.name, 1, isFav)}>See more</Morebut></li>
-            <li><ActionBut onClick={() => delFunc(data.location.name)}><img src={del} /></ActionBut></li>
+            <li key={8}><ActionBut onClick={() => updateFunc(data.location.name)}><img src={update} /></ActionBut></li>
+            <li key={9}><ActionBut onClick={() => favFunc(data)}><img src={isFav ? favUsed : fav} /></ActionBut></li>
+            <li key={10}><Morebut onClick={() => moreFunc(data.location.name, 1, isFav)}>See more</Morebut></li>
+            <li key={11}><ActionBut onClick={() => delFunc(data.location.name)}><img src={del} /></ActionBut></li>
         </ul>
     </Card>)
 }

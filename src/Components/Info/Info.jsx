@@ -43,14 +43,14 @@ const Info = () => {
         setPage(nextPage);
         if (articles.length < 4) setHasMore(false);
     };
-
+    
     return (
         <Container>
             <Title>Interacting with our pets</Title>
             <CardContainer>
                 {cardsData.map((card, index) => (
                     <Card key={index}>
-                        {card.image.startsWith('https://images.') || card.image.startsWith('https://biztoc.') || card.image.startsWith('https://3dnews.') ? <Image src={news} alt="news" /> : <Image src={card.image} alt="news" />}
+                        {card.image === null || card.image.startsWith('https://images.') || card.image.startsWith('https://biztoc.') || card.image.startsWith('https://3dnews.') ? <Image src={news} alt="news" /> : <Image src={card.image} alt="news" />}
                         <Description>{card.description}</Description>
                     </Card>
                 ))}

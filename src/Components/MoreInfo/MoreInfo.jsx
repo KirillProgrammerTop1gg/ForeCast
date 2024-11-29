@@ -44,6 +44,15 @@ const InfoCard = styled.li`
         height: 160px;
         padding: 15px;
     }
+    transition: all .3s;
+    &:hover{
+        transform: scale(1.1);
+        transition: all .2s;
+    }
+    &:active{
+        transform: scale(0.9);
+        transition: all .2s;
+    }
 `;
 const Title = styled.h3`
     font-family: Montserrat;

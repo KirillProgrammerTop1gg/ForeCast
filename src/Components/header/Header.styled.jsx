@@ -12,7 +12,7 @@ export const HeaderContainer = styled.header`
     border-bottom: 1px solid #ddd;
     position: relative;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1199px) {
         padding: 10px 20px;
     }
 `;
@@ -21,7 +21,7 @@ export const Logo = styled.img`
     height: 40px;
     margin-left: 20px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1199px) {
         height: 35px;
         margin-left: 10px;
     }
@@ -32,7 +32,7 @@ export const NavLinks = styled.nav`
     gap: 40px;
     align-items: center;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1199px) {
         display: none;
         flex-direction: column;
         position: absolute;
@@ -50,7 +50,7 @@ export const UserName = styled.p`
     display: flex;
     gap: 40px;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1199px) {
         display: none;
         flex-direction: column;
         position: absolute;
@@ -89,7 +89,7 @@ export const SignUpButton = styled.button`
         background-color: #ff8c00;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1199px) {
         width: 90%;
         margin: 0 auto;
     }
@@ -107,7 +107,7 @@ export const HamburgerMenu = styled.div`
         background-color: #333;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1199px) {
         display: flex;
     }
 `;

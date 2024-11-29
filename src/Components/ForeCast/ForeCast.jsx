@@ -54,6 +54,15 @@ const ForecastList = styled.ul`
         margin-top: 25px;
     }
     &>li{
+        transition: all .3s;
+        &:hover{
+            transform: scale(1.1);
+            transition: all .2s;
+        }
+        &:active{
+            transform: scale(0.9);
+            transition: all .2s;
+        }
         width: 100%;
         border-radius: 10px;
         background: #D9D9D9;
