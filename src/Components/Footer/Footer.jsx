@@ -3,15 +3,18 @@ import logo from '../../imgs/logo 2.png'
 import inst from '../../imgs/inst.png'
 import fasebook from '../../imgs/fasebook.png'
 import watsap from '../../imgs/whattapp.png'
+const Section = styled.section`
+	background: #ffb36c;
+	margin-top: 48px;
+`
 const GlawBox = styled.div`
 	display: flex;
 	padding: 40px 0px 69px 150px;
-	margin-top: 48px;
 	gap: 103px;
-	/* width: 1440px; */
+	max-width: 1440px;
+	margin: 0 auto;
 	/* height: 179px; */
 	flex-shrink: 0;
-	background: #ffb36c;
 	@media (max-width: 1200px) {
 		gap: 100px;
 		padding: 40px 0px 64px 100px;
@@ -182,6 +185,7 @@ const BoxCintactA = styled.a`
 `
 const Footerr = () => {
 	return (
+		<Section>
 		<GlawBox>
 			<BoxImg>
 				<ImgLogo src={logo}></ImgLogo>
@@ -204,6 +208,7 @@ const Footerr = () => {
 				</BoxContact>
 			</SecondGlawBox>
 		</GlawBox>
+		</Section>
 	)
 }
 export default Footerr

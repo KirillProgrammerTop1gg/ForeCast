@@ -11,7 +11,8 @@ export const HeaderContainer = styled.header`
     background-color: #fff;
     border-bottom: 1px solid #ddd;
     position: relative;
-
+    max-width: 1440px;
+    margin: 0 auto;
     @media (max-width: 1199px) {
         padding: 10px 20px;
     }
