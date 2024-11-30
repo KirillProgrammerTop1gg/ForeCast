@@ -17,7 +17,7 @@ const Info = () => {
 
     const fetchData = async (pageNumber) => {
         const response = await fetch(
-            `https://newsapi.org/v2/everything?q=tesla&from=2024-10-28&sortBy=publishedAt&page=${pageNumber}&pageSize=4&&apiKey=dfc315e5dc1a415a9f904b06a1999ba3`
+            `https://newsapi.org/v2/everything?q=tesla&from=2024-10-30&sortBy=publishedAt&page=${pageNumber}&pageSize=4&&apiKey=dfc315e5dc1a415a9f904b06a1999ba3`
         );
         const data = await response.json();
         return data.articles.map((article) => ({
